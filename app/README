@@ -5,5 +5,3 @@ the application has many gradle concepts and lines that need to be executed befo
 run for the app.
 
 Components like: Recyclerview, Databinding, Retrofit, RxJavaObserver and many are used
-
-
