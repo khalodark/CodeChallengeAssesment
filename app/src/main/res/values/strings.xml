@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NY-Times-Popular-Articles</string>
+    <string name="loading">Loading</string>
+    <string name="search">Search</string>
+</resources>
