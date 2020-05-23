@@ -2,4 +2,13 @@
     <string name="app_name">NY-Times-Popular-Articles</string>
     <string name="loading">Loading</string>
     <string name="search">Search</string>
+    <string name="unauthorized">UnAuthorized</string>
+    <string name="error_request_type">Error in Request Type</string>
+    <string name="error_parsing_entity">Parsing Entity Error</string>
+    <string name="server_error">Server Error</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="error">Error</string>
+    <string name="OK">Ok</string>
+    <string name="ny_key">sYqsEIawgLY17whbtCnW49h8YuGBzUbV</string>
+    <string name="newyork_times_popular">Nywork Times Most Popular Articles</string>
 </resources>

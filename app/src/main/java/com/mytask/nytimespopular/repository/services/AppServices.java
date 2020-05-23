@@ -1,16 +1,23 @@
 package com.mytask.nytimespopular.repository.services;
 
 
+import com.mytask.nytimespopular.model.ResultResponse;
+import com.mytask.nytimespopular.model.baseresponse.GeneralResponse;
 import com.mytask.nytimespopular.repository.WebAddressConstants;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Flowable;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
 
 public class AppServices {
 
@@ -65,6 +72,9 @@ public class AppServices {
     }
 
     public interface DataApi {
+
+        @GET(WebAddressConstants.ARTICLES)
+        Flowable<Response<GeneralResponse<List<ResultResponse>>>> getArticles(@Query("api-key") String key);
 
         // Main Categories API
 //        @GET(WebAddressConstants.AppServices.GET_CATEGORIES)

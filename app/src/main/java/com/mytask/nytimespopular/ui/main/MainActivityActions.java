@@ -1,4 +1,4 @@
-package com.mytask.nytimespopular.ui;
+package com.mytask.nytimespopular.ui.main;
 
 import com.mytask.nytimespopular.base.BaseActions;
 

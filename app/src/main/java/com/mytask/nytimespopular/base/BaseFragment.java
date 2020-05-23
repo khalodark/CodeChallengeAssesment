@@ -25,10 +25,6 @@ public abstract class BaseFragment<T extends ViewDataBinding,
 
     public abstract int getBindingVariable();
 
-    public abstract boolean hideToolbar();
-
-    public abstract boolean hideBottomSheet();
-
     public abstract boolean isNeedActivityResult();
 
     public abstract ActivityResultCallBack activityResultCallBack();
@@ -43,34 +39,10 @@ public abstract class BaseFragment<T extends ViewDataBinding,
 
     protected abstract void setUp();
 
-    private void notifiActivity(Context context) {
-        if (context instanceof BaseActivity) {
-            BaseActivity activity = (BaseActivity) context;
-            this.mActivity = activity;
-            if (isNeedActivityResult()) {
-                activity.onFragmentAttachedNeedActivityResult(hideToolbar(), hideBottomSheet(), activityResultCallBack());
-            } else {
-                activity.onFragmentAttached(hideToolbar(), hideBottomSheet());
-            }
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        notifiActivity(context);
-    }
-
     @Override
     public void onDetach() {
         mActivity = null;
         super.onDetach();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        notifiActivity(getMyContext());
     }
 
     @Override

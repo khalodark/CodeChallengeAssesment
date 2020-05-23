@@ -23,6 +23,7 @@ import android.widget.Toast;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModel;
 
+import com.mytask.nytimespopular.helpers.utils.SnackViewBulider;
 import com.mytask.nytimespopular.repository.DataManager;
 
 import java.lang.ref.WeakReference;
@@ -30,16 +31,16 @@ import java.lang.ref.WeakReference;
 public abstract class BaseViewModel<N, T extends ViewDataBinding> extends ViewModel {
 
 
-    private WeakReference<N> mNavigator;
+    private WeakReference<N> mActionable;
     private T ViewBinding;
     private Context mContext;
     private DataManager dataManager;
 
-    public BaseViewModel(Context mContext, DataManager dataManager, N navigator, T viewBinding) {
+    public BaseViewModel(Context mContext, DataManager dataManager, N action, T viewBinding) {
         this.mContext = mContext;
         this.dataManager = dataManager;
         this.ViewBinding = viewBinding;
-        this.mNavigator = new WeakReference<>(navigator);
+        this.mActionable = new WeakReference<>(action);
     }
 
 
@@ -58,7 +59,7 @@ public abstract class BaseViewModel<N, T extends ViewDataBinding> extends ViewMo
     }
 
     protected N getNavigator() {
-        return mNavigator.get();
+        return mActionable.get();
     }
 
     protected Context getMyContext() {
@@ -82,10 +83,10 @@ public abstract class BaseViewModel<N, T extends ViewDataBinding> extends ViewMo
     }
 
 
-//    public void showSnackBar(String title, String message, String actionText, SnackViewBulider.SnackbarCallback snackbarCallback) {
-//        getBaseActivity().showSnackBar(getViewBinding().getRoot(), R.drawable.ic_warning,
-//                title, message, actionText, snackbarCallback);
-//    }
+    public void showSnackBar(String title, String message, String actionText, SnackViewBulider.SnackbarCallback snackbarCallback) {
+        getBaseActivity().showSnackBar(getViewBinding().getRoot(), android.R.drawable.stat_sys_warning,
+                title, message, actionText, snackbarCallback);
+    }
 
     public void showToast(String message) {
         Toast.makeText(getMyContext(), message, Toast.LENGTH_SHORT).show();

@@ -2,15 +2,15 @@ package com.mytask.nytimespopular;
 
 
 import android.content.Context;
-import android.os.Build;
 
-import androidx.annotation.RequiresApi;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.mytask.nytimespopular.base.BaseActions;
 import com.mytask.nytimespopular.repository.DataManager;
+import com.mytask.nytimespopular.ui.main.MainActivityViewModel;
+import com.mytask.nytimespopular.ui.master.MasterFragmentViewModel;
 
 /**
  * @ViewDataBinding : Base class for generated data binding classes
@@ -30,17 +30,17 @@ public class ViewModelProviderFactory<V extends ViewDataBinding, N extends BaseA
     private final DataManager dataManager;
     private final Context mContext;
 
+
     public ViewModelProviderFactory(DataManager dataManager, Context mContext) {
         this.dataManager = dataManager;
         this.mContext = mContext;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public <T extends ViewModel> T create(Class<T> modelClass, V viewDataBinding, N navigation) {
-//        if (modelClass.isAssignableFrom(SplashScreenViewModel.class))
-//            return (T) new SplashScreenViewModel(mContext, dataManager, viewDataBinding, navigation);
-//        else if (modelClass.isAssignableFrom(LoginViewModel.class))
-//            return (T) new LoginViewModel(mContext, dataManager, viewDataBinding, navigation);
+        if (modelClass.isAssignableFrom(MainActivityViewModel.class))
+            return (T) new MainActivityViewModel(mContext, dataManager, viewDataBinding, navigation);
+        else if (modelClass.isAssignableFrom(MasterFragmentViewModel.class))
+            return (T) new MasterFragmentViewModel(mContext, dataManager, viewDataBinding, navigation);
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }
 }

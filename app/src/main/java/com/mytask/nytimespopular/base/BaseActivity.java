@@ -28,15 +28,12 @@ import com.mytask.nytimespopular.helpers.utils.SnackViewBulider;
 public abstract class BaseActivity<T extends ViewDataBinding, V extends BaseViewModel> extends AppCompatActivity
         implements BaseFragment.Callback {
 
-    public boolean mTracking = false;
     ActivityResultCallBack activityResultCallBack;
     private T mViewDataBinding;
     private V mViewModel;
     private CustomDialogUtils progressDialog;
 
     public abstract int getBindingVariable();
-
-    public abstract void setUpToolbar();
 
     public abstract @LayoutRes
     int getLayoutId();
