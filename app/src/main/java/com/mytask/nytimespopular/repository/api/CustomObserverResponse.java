@@ -32,7 +32,7 @@ public class CustomObserverResponse<T> implements Observer<Response<GeneralRespo
     @Override
     public void onNext(Response<GeneralResponse<T>> generalResponseResponse) {
         if (generalResponseResponse.code() == 200) {
-            if (generalResponseResponse.body().getResultResponseList() == null) {
+            if (generalResponseResponse.body().getStatus().equals("OK")) {
                 this.apiCallBack.onSuccess(generalResponseResponse.body().getResultResponseList());
             }
         } else {

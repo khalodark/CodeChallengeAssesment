@@ -23,8 +23,6 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_15sdp"
-            android:adjustViewBounds="true"
-            android:scaleType="center"
             app:srcCompat="@mipmap/ic_launcher" />
 
         <androidx.appcompat.widget.AppCompatTextView

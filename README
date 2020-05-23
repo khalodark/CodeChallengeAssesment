@@ -1,8 +1,0 @@
-Test Project for NY-Times Articles Master Details
-
-Android Project that Uses mainly MVVM (Model View View Model) Pattern in its code design
-the application has many gradle concepts and lines that need to be executed before any
-run for the app.
-
-
-Components like: Recyclerview, Databinding, Retrofit, RxJavaObserver and many are used

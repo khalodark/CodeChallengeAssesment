@@ -22,19 +22,19 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
     Context mContext;
     RecyclerClick mRecyclerClick;
-    private List<ResultResponse> mDataExampleList;
+    private List<ResultResponse> mDataList;
 
 
     public NewsAdapter(Context mContext, List<ResultResponse> menuItemsList,
                        RecyclerClick mRecyclerClick) {
-        this.mDataExampleList = menuItemsList;
+        this.mDataList = menuItemsList;
         this.mContext = mContext;
         this.mRecyclerClick = mRecyclerClick;
     }
 
     @Override
     public int getItemCount() {
-        return mDataExampleList.size();
+        return mDataList.size();
     }
 
     @Override
@@ -48,9 +48,9 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
     }
 
     public void addItems(List<ResultResponse> menuItemsList) {
-        if (this.mDataExampleList.size() > 0)
-            this.mDataExampleList.clear();
-        this.mDataExampleList = menuItemsList;
+        if (this.mDataList.size() > 0)
+            this.mDataList.clear();
+        this.mDataList = menuItemsList;
     }
 
 
@@ -65,11 +65,12 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @Override
         public void onBind(int position) {
-            GeneralFunction.loadImage(mContext, mDataExampleList.get(position).
+            GeneralFunction.loadImage(mContext, mDataList.get(position).
                     getMedia().get(0).getMediaMetadata().get(0).getUrl(), this.mBinding.imgNews);
-            this.mBinding.actvTitle.setText(mDataExampleList.get(position).getTitle());
-            this.mBinding.actvAuthor.setText(mDataExampleList.get(position).getByline());
-            this.mBinding.actvDetails.setText(mDataExampleList.get(position).getAbstract());
+            this.mBinding.actvTitle.setText(mDataList.get(position).getTitle());
+            this.mBinding.actvAuthor.setText(mDataList.get(position).getByline());
+            this.mBinding.actvDetails.setText(mDataList.get(position).getAbstract());
+            this.mBinding.actvDate.setText(mDataList.get(position).getPublishedDate());
         }
     }
 }
