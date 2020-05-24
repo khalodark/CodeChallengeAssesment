@@ -15,3 +15,6 @@ Cloning the repository on your android studio will make it available to open and
 Sync the Gradle files by using the elephant button on the top of toolbar in android studio
 and wait for the project to be built.
 
+after building project, simply run the application on Emulator from your choice.
+
+
