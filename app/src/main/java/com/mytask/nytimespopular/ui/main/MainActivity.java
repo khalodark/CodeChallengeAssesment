@@ -3,7 +3,11 @@ package com.mytask.nytimespopular.ui.main;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -55,13 +59,18 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
                 new AppBarConfiguration.Builder(navController.getGraph())
                         .build();
 
-        NavigationUI.setupWithNavController(getViewDataBinding().toolbar, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(getViewDataBinding().toolbar,
+                navController, appBarConfiguration);
 
         setSupportActionBar(getViewDataBinding().toolbar);
         Objects.requireNonNull(getSupportActionBar()).setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         getViewDataBinding().toolbar.setTitle(getString(R.string.newyork_times_popular));
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        return Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp();
     }
 
     @Override
@@ -72,5 +81,24 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     @Override
     public void onFragmentDetached(String tag) {
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onSupportNavigateUp();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 }

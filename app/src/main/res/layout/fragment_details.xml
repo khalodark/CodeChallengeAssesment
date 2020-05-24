@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="modelView"
+            type="com.mytask.nytimespopular.ui.details.DetailsFragmentViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_original_article"
+            style="@style/text_styles_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/eight_dp"
+            android:gravity="center"
+            android:text="@string/details_page"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/holo_blue_dark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_published_date"
+            style="@style/text_styles_title"
+            android:text="@string/published_date"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/actv_original_article" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_published_date_text"
+            style="@style/text_styles_title.description"
+            android:text="TextView"
+            android:textColor="@color/silver"
+            app:layout_constraintStart_toEndOf="@+id/actv_published_date"
+            app:layout_constraintTop_toTopOf="@+id/actv_published_date" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_author"
+            style="@style/text_styles_title"
+            android:text="@string/author"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/actv_published_date" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_author2"
+            style="@style/text_styles_title"
+            android:text="@string/title"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/actv_author" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_author_text"
+            style="@style/text_styles_title.description"
+            android:text="TextView"
+            android:textColor="@color/silver"
+            app:layout_constraintStart_toEndOf="@+id/actv_author"
+            app:layout_constraintTop_toTopOf="@+id/actv_author" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_abstract"
+            style="@style/text_styles_title"
+            android:text="@string/abstracts"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/actv_title_text" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_abstract_text"
+            style="@style/text_styles_title.description"
+            android:text="TextView"
+            android:textColor="@color/silver"
+            app:layout_constraintStart_toEndOf="@+id/actv_abstract"
+            app:layout_constraintTop_toTopOf="@+id/actv_abstract" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/actv_title_text"
+            style="@style/text_styles_title.description"
+            android:text="TextView"
+            android:textColor="@color/silver"
+            app:layout_constraintStart_toEndOf="@+id/actv_author2"
+            app:layout_constraintTop_toTopOf="@+id/actv_author2" />
+
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:layout_margin="@dimen/_15sdp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/actv_abstract_text" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

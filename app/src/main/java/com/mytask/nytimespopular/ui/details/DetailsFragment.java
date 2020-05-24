@@ -1,18 +1,19 @@
-package com.mytask.nytimespopular.ui.master;
+package com.mytask.nytimespopular.ui.details;
 
 import android.content.Context;
 
 import com.mytask.nytimespopular.R;
 import com.mytask.nytimespopular.ViewModelProviderFactory;
 import com.mytask.nytimespopular.base.BaseFragment;
-import com.mytask.nytimespopular.databinding.FragmentMasterBinding;
+import com.mytask.nytimespopular.databinding.FragmentDetailsBinding;
 import com.mytask.nytimespopular.helpers.interfaces.ActivityResultCallBack;
+import com.mytask.nytimespopular.model.ResultResponse;
 import com.mytask.nytimespopular.repository.DataManager;
 
 import static com.mytask.nytimespopular.BR.viewModel;
 
-public class MasterFragment extends BaseFragment<FragmentMasterBinding,
-        MasterFragmentViewModel> implements MasterFragmentActions {
+public class DetailsFragment extends BaseFragment<FragmentDetailsBinding,
+        DetailsFragmentViewModel> implements DetailsFragmentActions {
     @Override
     public int getBindingVariable() {
         return viewModel;
@@ -30,13 +31,13 @@ public class MasterFragment extends BaseFragment<FragmentMasterBinding,
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_master;
+        return R.layout.fragment_details;
     }
 
     @Override
-    public MasterFragmentViewModel getViewModel() {
-        return (MasterFragmentViewModel) new ViewModelProviderFactory(DataManager.getInstance(),
-                getMyContext()).create(MasterFragmentViewModel.class, getViewDataBinding(), this);
+    public DetailsFragmentViewModel getViewModel() {
+        return (DetailsFragmentViewModel) new ViewModelProviderFactory(DataManager.getInstance(),
+                getMyContext()).create(DetailsFragmentViewModel.class, getViewDataBinding(), this);
     }
 
     @Override
@@ -46,5 +47,11 @@ public class MasterFragment extends BaseFragment<FragmentMasterBinding,
 
     @Override
     protected void setUp() {
+        getViewModel().setUp();
+    }
+
+    @Override
+    public ResultResponse getPassedResult() {
+        return (ResultResponse) getArguments().getSerializable("Result");
     }
 }

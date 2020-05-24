@@ -46,7 +46,10 @@ public class Medium {
     }
 
     public List<MediaMetadatum> getMediaMetadata() {
-        return mediaMetadata;
+        if (mediaMetadata.size() > 0)
+            return mediaMetadata;
+        else
+            return null;
     }
 
     public void setMediaMetadata(List<MediaMetadatum> mediaMetadata) {

@@ -6,4 +6,5 @@
     <color name="white">@android:color/white</color>
     <color name="black">@android:color/black</color>
     <color name="gray">#d1d1d1</color>
+    <color name="silver">#C0C0C0</color>
 </resources>

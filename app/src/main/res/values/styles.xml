@@ -8,4 +8,22 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="text_styles_title" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">@dimen/ten_dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="textAllCaps">false</item>
+        <item name="android:layout_marginStart">@dimen/eight_dp</item>
+        <item name="android:layout_marginTop">@dimen/eight_dp</item>
+    </style>
+
+    <style name="text_styles_title.description">
+        <item name="android:textStyle">normal</item>
+        <item name="android:layout_marginTop">0dp</item>
+        <item name="android:textColor">@color/silver</item>
+        <item name="textAllCaps">false</item>
+    </style>
 </resources>

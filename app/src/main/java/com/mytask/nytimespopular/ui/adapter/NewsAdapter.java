@@ -3,6 +3,7 @@ package com.mytask.nytimespopular.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -53,7 +54,6 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
         this.mDataList = menuItemsList;
     }
 
-
     public class HomeCellViewHolder extends BaseViewHolder {
 
         private final CellNewsAdapterBinding mBinding;
@@ -65,12 +65,25 @@ public class NewsAdapter extends RecyclerView.Adapter<BaseViewHolder> {
 
         @Override
         public void onBind(int position) {
-            GeneralFunction.loadImage(mContext, mDataList.get(position).
-                    getMedia().get(0).getMediaMetadata().get(0).getUrl(), this.mBinding.imgNews);
-            this.mBinding.actvTitle.setText(mDataList.get(position).getTitle());
-            this.mBinding.actvAuthor.setText(mDataList.get(position).getByline());
-            this.mBinding.actvDetails.setText(mDataList.get(position).getAbstract());
-            this.mBinding.actvDate.setText(mDataList.get(position).getPublishedDate());
+            if (mDataList.size() > 0 && mDataList != null) {
+                if (mDataList.get(position).getMedia() != null) {
+                    GeneralFunction.loadImage(mContext, mDataList.get(position).
+                            getMedia().get(0).getMediaMetadata().get(0).getUrl(), this.mBinding.imgNews);
+                } else {
+                    GeneralFunction.loadImage(mContext, "", this.mBinding.imgNews);
+                }
+                this.mBinding.actvTitle.setText(mDataList.get(position).getTitle());
+                this.mBinding.actvAuthor.setText(mDataList.get(position).getByline());
+                this.mBinding.actvDetails.setText(mDataList.get(position).getAbstract());
+                this.mBinding.actvDate.setText(mDataList.get(position).getPublishedDate());
+            }
+
+            this.mBinding.actvDetails.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mRecyclerClick.onClick(mDataList.get(position), position);
+                }
+            });
         }
     }
 }

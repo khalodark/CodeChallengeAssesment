@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.mytask.nytimespopular.base.BaseActions;
 import com.mytask.nytimespopular.repository.DataManager;
+import com.mytask.nytimespopular.ui.details.DetailsFragmentViewModel;
 import com.mytask.nytimespopular.ui.main.MainActivityViewModel;
 import com.mytask.nytimespopular.ui.master.MasterFragmentViewModel;
 
@@ -41,6 +42,8 @@ public class ViewModelProviderFactory<V extends ViewDataBinding, N extends BaseA
             return (T) new MainActivityViewModel(mContext, dataManager, viewDataBinding, navigation);
         else if (modelClass.isAssignableFrom(MasterFragmentViewModel.class))
             return (T) new MasterFragmentViewModel(mContext, dataManager, viewDataBinding, navigation);
+        else if (modelClass.isAssignableFrom(DetailsFragmentViewModel.class))
+            return (T) new DetailsFragmentViewModel(mContext, dataManager, viewDataBinding, navigation);
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }
 }

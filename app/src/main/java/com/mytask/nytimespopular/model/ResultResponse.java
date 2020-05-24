@@ -4,10 +4,11 @@ package com.mytask.nytimespopular.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
 @SuppressWarnings("unused")
-public class ResultResponse {
+public class ResultResponse implements Serializable {
 
     @SerializedName("abstract")
     private String abstractWord;
@@ -55,6 +56,8 @@ public class ResultResponse {
     private String url;
 
     public String getAbstract() {
+        if (abstractWord == null)
+            return "";
         return abstractWord;
     }
 
@@ -79,6 +82,8 @@ public class ResultResponse {
     }
 
     public String getByline() {
+        if (byline == null)
+            return "";
         return byline;
     }
 
@@ -127,7 +132,10 @@ public class ResultResponse {
     }
 
     public List<Medium> getMedia() {
-        return media;
+        if (media.size() > 0)
+            return media;
+        else
+            return null;
     }
 
     public void setMedia(List<Medium> media) {
@@ -159,6 +167,8 @@ public class ResultResponse {
     }
 
     public String getPublishedDate() {
+        if (publishedDate == null)
+            return "";
         return publishedDate;
     }
 
@@ -191,6 +201,8 @@ public class ResultResponse {
     }
 
     public String getTitle() {
+        if (title == null)
+            return "";
         return title;
     }
 
