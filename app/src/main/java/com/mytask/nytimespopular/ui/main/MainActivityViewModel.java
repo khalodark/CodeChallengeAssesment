@@ -21,9 +21,7 @@ public class MainActivityViewModel extends BaseViewModel<MainActivityActions, Ac
         setUp();
     }
 
-
     @Override
     protected void setUp() {
-
     }
 }

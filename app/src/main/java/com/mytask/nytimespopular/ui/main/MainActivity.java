@@ -74,16 +74,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainActivity
     }
 
     @Override
-    public void onFragmentAttached(boolean hideToolbar, boolean hideBottomSheet) {
-
-    }
-
-    @Override
-    public void onFragmentDetached(String tag) {
-
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.activity_menu, menu);

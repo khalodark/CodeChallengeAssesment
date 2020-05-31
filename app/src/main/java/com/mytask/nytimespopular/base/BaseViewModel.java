@@ -18,7 +18,6 @@ package com.mytask.nytimespopular.base;
 
 
 import android.content.Context;
-import android.widget.Toast;
 
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModel;
@@ -29,7 +28,6 @@ import com.mytask.nytimespopular.repository.DataManager;
 import java.lang.ref.WeakReference;
 
 public abstract class BaseViewModel<N, T extends ViewDataBinding> extends ViewModel {
-
 
     private WeakReference<N> mActionable;
     private T ViewBinding;
@@ -70,25 +68,16 @@ public abstract class BaseViewModel<N, T extends ViewDataBinding> extends ViewMo
         return dataManager;
     }
 
-    public void showLoading() {
-        ((BaseActivity<ViewDataBinding, BaseViewModel>) getMyContext()).showLoading();
-    }
-
-    public void hideLoading() {
-        ((BaseActivity<ViewDataBinding, BaseViewModel>) getMyContext()).hideLoading();
-    }
-
     protected BaseActivity getBaseActivity() {
         return ((BaseActivity) getMyContext());
     }
 
+    public boolean isNetworkConnected() {
+        return getBaseActivity() != null && getBaseActivity().isNetworkConnected();
+    }
 
     public void showSnackBar(String title, String message, String actionText, SnackViewBulider.SnackbarCallback snackbarCallback) {
         getBaseActivity().showSnackBar(getViewBinding().getRoot(), android.R.drawable.stat_sys_warning,
                 title, message, actionText, snackbarCallback);
-    }
-
-    public void showToast(String message) {
-        Toast.makeText(getMyContext(), message, Toast.LENGTH_SHORT).show();
     }
 }

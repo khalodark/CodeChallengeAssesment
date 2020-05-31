@@ -16,9 +16,10 @@ import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import retrofit2.Response;
 
-public class CustomObserverResponse<T> implements Observer<Response<GeneralResponse<T>>> {
+public class CustomObserverResponse<T> implements
+        Observer<Response<GeneralResponse<T>>> {
 
-    APICallBack apiCallBack;
+    private APICallBack apiCallBack;
 
     public CustomObserverResponse(APICallBack apiCallBack) {
         this.apiCallBack = apiCallBack;
@@ -78,8 +79,7 @@ public class CustomObserverResponse<T> implements Observer<Response<GeneralRespo
 
     @Override
     public void onError(Throwable e) {
-        this.apiCallBack.onError(NYTestApp.getContext().getApplicationContext()
-                .getResources().getString(R.string.no_internet_connection), 0);
+        this.apiCallBack.onError(e.getMessage(), 0);
     }
 
     @Override

@@ -7,12 +7,14 @@ import androidx.databinding.ViewDataBinding;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.mytask.nytimespopular.R;
 import com.mytask.nytimespopular.base.BaseActions;
 import com.mytask.nytimespopular.base.BaseViewModel;
 import com.mytask.nytimespopular.databinding.FragmentMasterBinding;
 import com.mytask.nytimespopular.helpers.interfaces.RecyclerClick;
 import com.mytask.nytimespopular.helpers.utils.CustomDialogUtils;
+import com.mytask.nytimespopular.helpers.utils.SnackViewBulider;
 import com.mytask.nytimespopular.helpers.utils.SupportRefreshingAndRetrying;
 import com.mytask.nytimespopular.model.ResultResponse;
 import com.mytask.nytimespopular.repository.DataManager;
@@ -41,31 +43,41 @@ public class MasterFragmentViewModel extends BaseViewModel<MasterFragmentActions
     }
 
     public void getData() {
-        if (!supportRefreshingAndRetrying.getisRefreshing()) {
-            supportRefreshingAndRetrying.setIsLoading(true);
-        }
-        getDataManager().getServices().getDataApi().getArticles(getMyContext().getString(R.string.ny_key))
-                .toObservable()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new CustomObserverResponse<>(new APICallBack<List<ResultResponse>>() {
-                    @Override
-                    public void onSuccess(List<ResultResponse> response) {
-                        supportRefreshingAndRetrying.checkIsLoadMoreAndRefreshing(
-                                true);
-                        homeAdapter.addItems(response);
-                        homeAdapter.notifyDataSetChanged();
-                    }
+        if (isNetworkConnected()) {
+            if (!supportRefreshingAndRetrying.getisRefreshing()) {
+                supportRefreshingAndRetrying.setIsLoading(true);
+            }
+            getDataManager().getServices().getDataApi().getArticles(getMyContext().getString(R.string.ny_key))
+                    .toObservable()
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe(new CustomObserverResponse<>(new APICallBack<List<ResultResponse>>() {
+                        @Override
+                        public void onSuccess(List<ResultResponse> response) {
+                            supportRefreshingAndRetrying.checkIsLoadMoreAndRefreshing(
+                                    true);
+                            homeAdapter.addItems(response);
+                            homeAdapter.notifyDataSetChanged();
+                        }
 
-                    @Override
-                    public void onError(String error, int errorCode) {
-                        showSnackBar(getMyContext().getString(R.string.error),
-                                error, getMyContext().getResources().getString(R.string.OK),
-                                snackbar -> snackbar.dismiss());
-                        supportRefreshingAndRetrying.checkIsLoadMoreAndRefreshing(
-                                false);
-                    }
-                }));
+                        @Override
+                        public void onError(String error, int errorCode) {
+                            showSnackBar(getMyContext().getString(R.string.error),
+                                    error, getMyContext().getResources().getString(R.string.OK),
+                                    snackbar -> snackbar.dismiss());
+                            supportRefreshingAndRetrying.checkIsLoadMoreAndRefreshing(
+                                    false);
+                        }
+                    }));
+        } else {
+            showSnackBar(getBaseActivity().getString(R.string.error),
+                    getBaseActivity().getString(R.string.no_internet_connection), getBaseActivity().getString(R.string.ok_title), new SnackViewBulider.SnackbarCallback() {
+                        @Override
+                        public void onActionClick(Snackbar snackbar) {
+                            snackbar.dismiss();
+                        }
+                    });
+        }
     }
 
 

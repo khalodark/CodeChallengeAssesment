@@ -6,7 +6,6 @@ import com.mytask.nytimespopular.R;
 import com.mytask.nytimespopular.ViewModelProviderFactory;
 import com.mytask.nytimespopular.base.BaseFragment;
 import com.mytask.nytimespopular.databinding.FragmentDetailsBinding;
-import com.mytask.nytimespopular.helpers.interfaces.ActivityResultCallBack;
 import com.mytask.nytimespopular.model.ResultResponse;
 import com.mytask.nytimespopular.repository.DataManager;
 
@@ -19,17 +18,7 @@ public class DetailsFragment extends BaseFragment<FragmentDetailsBinding,
         return viewModel;
     }
 
-    @Override
-    public boolean isNeedActivityResult() {
-        return false;
-    }
-
-    @Override
-    public ActivityResultCallBack activityResultCallBack() {
-        return null;
-    }
-
-    @Override
+      @Override
     public int getLayoutId() {
         return R.layout.fragment_details;
     }

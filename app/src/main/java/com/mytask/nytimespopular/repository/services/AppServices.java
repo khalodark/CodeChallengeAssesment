@@ -71,19 +71,14 @@ public class AppServices {
     }
 
     public interface DataApi {
-
+        /**
+         * Get the Articles from API
+         *
+         * @param key - authorized key from NY-Times API
+         * @return
+         */
         @GET(WebAddressConstants.ARTICLES)
         Flowable<Response<GeneralResponse<ResultResponse>>> getArticles(@Query("api-key") String key);
-
-        // Main Categories API
-//        @GET(WebAddressConstants.AppServices.GET_CATEGORIES)
-//        Flowable<Response<GeneralResponse<List<MenuItems>>>> getCategories();
-
-//        @GET(WebAddressConstants.ABOUT_US)
-//        Single<Response<GeneralResponse<AboutUs>>> aboutUs();
-//
-//        @GET(WebAddressConstants.GET_MY_SERVICES)
-//        Flowable<Response<GeneralResponse<ServiceResponse>>> getProviderServices();
     }
 }
 
